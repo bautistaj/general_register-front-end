@@ -1,0 +1,45 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Clientes</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title"> Listado de clientes</h5>
+
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" 
+      [routerLink]="['/clients/form']">
+        Crear Cliente
+      </button>
+    </div>
+    <div *ngIf="clients?.length === 0" class="alert alert-info">
+      ¡No hay clients registrados!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="clients?.length > 0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.id }}</td>
+          <td>{{ client.name }}</td>
+          <td>{{ client.firstLastName }} {{client.secondLastName}}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.phone }}</td>
+          <td>
+            <button class="btn btn-success" type="button" [routerLink]="['/clients/form', client.id]" >Editar</button>
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)='delete(client)' class="btn btn-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-paginator *ngIf="paginator" [paginator] = "paginator"></app-paginator>
+  </div>
+</div>

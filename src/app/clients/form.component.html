@@ -1,0 +1,96 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ title }}</div>
+  <div class="card-body">
+    <form #clientForm="ngForm">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="name" >Nombre</label>
+        <div class="col-sm-6">
+          <input id="name" type="text" class="form-control" [(ngModel)] = "client.name" 
+          name="name" required #name ="ngModel" />
+          <div class="alert alert-danger" *ngIf="name.invalid && ( name.dirty || name.touched )">
+            <div *ngIf = "name.errors.required">
+              Nombre es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="firstLastName" >Apellido Paterno</label>
+        <div class="col-sm-6">
+          <input id="firstLastName" type="text" class="form-control" [(ngModel)] = "client.firstLastName" 
+          name="firstLastName" required #firstLastName="ngModel"/>
+          <div class="alert alert-danger" *ngIf="firstLastName.invalid && ( firstLastName.dirty || firstLastName.touched )">
+            <div *ngIf = "firstLastName.errors.required">
+              Apellido es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="secondLastName" >Apellido Materno</label>
+        <div class="col-sm-6">
+          <input id="secondLastName" type="text" class="form-control" [(ngModel)] = "client.secondLastName"  
+          name="secondLastName"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="phone" >Teléfono</label>
+        <div class="col-sm-6">
+          <input id="phone" class="form-control" [(ngModel)] = "client.phone" 
+          name="phone" required #phone="ngModel"/>
+          <div class="alert alert-danger" *ngIf="phone.invalid && ( phone.dirty || phone.touched )">
+            <div *ngIf = "phone.errors.required">
+              Teléfono es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="email" >Correo</label>
+        <div class="col-sm-6">
+          <input id="email" type="email" class="form-control" [(ngModel)] = "client.email" 
+          name="email" required email #email="ngModel"/>
+          <div class="alert alert-danger" *ngIf="email.invalid && ( email.dirty || email.touched )">
+            <div *ngIf = "email.errors.required">
+              Correo es requerido
+            </div>
+            <div *ngIf = "email.errors.email">
+              Correo debe de tener un formato valido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="birthday" >Fecha de nacimiento</label>
+        <div class="col-sm-6">
+          <input id="birthday" type="date" class="form-control" [(ngModel)] = "client.birthday" 
+          name="date" required #birthday="ngModel"/>
+          <div class="alert alert-danger" *ngIf="birthday.invalid && ( birthday.dirty || birthday.touched )">
+            <div *ngIf = "birthday.errors.required">
+              Fecha de nacimiento es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button" (click)='create()' 
+          *ngIf="!client.id else elseBlock"
+          [disabled]="!clientForm.form.valid">Crear</button>
+          
+          <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)='update()'
+              [disabled]="!clientForm.form.valid">Editar</button>
+          </ng-template>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
