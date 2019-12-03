@@ -1,7 +1,6 @@
-<div class="card border-primary mb-3">
-  <div class="card-header">Clientes</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title"> Listado de clientes</h5>
+<app-detail *ngIf="selectedClient" [client]="selectedClient" ></app-detail>
+
+<h5 class="card-title"> Listado de clientes</h5>
 
     <div class="my-2 text-left">
       <button class="btn btn-rounded btn-primary" type="button" 
@@ -26,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let client of clients">
-          <td>{{ client.id }}</td>
+          <td><button class="btn btn-success" type="button" (click)="openModal(client)" >{{ client.id }}</button></td>
           <td>{{ client.name }}</td>
           <td>{{ client.firstLastName }} {{client.secondLastName}}</td>
           <td>{{ client.email }}</td>
@@ -41,5 +40,3 @@
       </tbody>
     </table>
     <app-paginator *ngIf="paginator" [paginator] = "paginator"></app-paginator>
-  </div>
-</div>

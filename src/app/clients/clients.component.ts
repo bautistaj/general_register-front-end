@@ -4,18 +4,21 @@ import { ClientService } from './client.service';
 import { Ntf } from '../util/Notifications';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { ModalService } from './detail/modal.service';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
 })
 export class ClientsComponent implements OnInit {
+  public selectedClient: Client;
   public clients:Client[]=[];
   public paginator: any;
 
   constructor(private clientService: ClientService, 
     private ntf: Ntf,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    public modalService: ModalService) { }
 
   ngOnInit() {
     this.getClients();
@@ -68,4 +71,8 @@ export class ClientsComponent implements OnInit {
     });
   }
 
+  openModal(client: Client){
+    this.selectedClient = client;
+    this.modalService.openModal();
+  }
 }

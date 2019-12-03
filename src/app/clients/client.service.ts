@@ -12,7 +12,7 @@ import { Ntf } from '../util/Notifications';
 })
 export class ClientService {
   private API = environment.API;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+  private httpHeaders = new HttpHeaders({'Content-Type': ['application/json']});
 
   constructor(private http: HttpClient, 
   private authService: AuthService, private nft: Ntf) { }
@@ -43,5 +43,20 @@ export class ClientService {
 
   delete(id: number): Observable<Client>{
     return this.http.delete<Client>(`${this.API}/api/clients/${id}`, {headers: this.getAuthorizationHeader()})
+  }
+
+  uploadPhoto(photo: File, id): Observable<Client> {
+    let formData = new FormData();
+    formData.append("photo", photo);
+    formData.append("id", id);
+
+    let httpHeaders = new HttpHeaders();
+    let token = this.authService.token;
+    if (token != null) {
+      httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+
+      
+    return this.http.post<Client>(`${this.API}/api/clients/photo`, formData, { headers: httpHeaders });
   }
 }

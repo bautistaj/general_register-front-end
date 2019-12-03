@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { ClientsComponent } from './clients/clients.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule } from '@angular/material/menu';
 import { LoginComponent } from './users/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './clients/form.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { DetailComponent } from './clients/detail/detail.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const routes: Routes = [
   { path: '', redirectTo: '/clients', pathMatch:'full'},
@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'clients/form', component: FormComponent},
   { path: 'clients/form/:id', component: FormComponent},
   { path: 'clients/page/:page', component: ClientsComponent},
+
 ];
 
 @NgModule({
@@ -30,12 +31,14 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     FormComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DetailComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    NgxDropzoneModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

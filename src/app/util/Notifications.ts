@@ -39,4 +39,8 @@ export class Ntf {
   showSuccessMessage(title, message){
     swal.fire(title, message ,'success');
   }
+  
+  showSuccessWarning(title, message){
+    swal.fire(title, message ,'warning');
+  }
 }

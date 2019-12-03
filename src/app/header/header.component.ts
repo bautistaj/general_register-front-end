@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public title: string = 'Collecta';
+  public title: string = 'CollectApp';
 
   constructor(private authService: AuthService, private router: Router ) { }
 
