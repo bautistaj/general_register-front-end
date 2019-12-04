@@ -1,4 +1,5 @@
 <app-detail *ngIf="selectedClient" [client]="selectedClient" ></app-detail>
+<app-file  *ngIf="selectedClientFile" [client]="selectedClientFile" ></app-file>
 
 <h5 class="card-title"> Listado de clientes</h5>
 
@@ -21,6 +22,7 @@
           <th>Teléfono</th>
           <th>Editar</th>
           <th>Eliminar</th>
+          <th>Archivos</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +36,10 @@
             <button class="btn btn-success" type="button" [routerLink]="['/clients/form', client.id]" >Editar</button>
           </td>
           <td>
-            <button type="button" name="eliminar" (click)='delete(client)' class="btn btn-danger btn-sm">Eliminar</button>
+            <button type="button" name="eliminar" (click)='delete(client)' class="btn btn-danger">Eliminar</button>
+          </td>
+          <td>
+            <button type="button" name="eliminar" (click)='openFileModal(client)' class="btn btn-success">Archivos</button>
           </td>
         </tr>
       </tbody>

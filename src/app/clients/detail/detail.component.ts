@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClientService } from '../client.service';
 import { Ntf } from 'src/app/util/Notifications';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from '../client';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from '../../../environments/environment';

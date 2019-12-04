@@ -12,6 +12,7 @@ import { FormComponent } from './clients/form.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { DetailComponent } from './clients/detail/detail.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FileComponent } from './clients/file/file.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/clients', pathMatch:'full'},
@@ -20,7 +21,6 @@ const routes: Routes = [
   { path: 'clients/form', component: FormComponent},
   { path: 'clients/form/:id', component: FormComponent},
   { path: 'clients/page/:page', component: ClientsComponent},
-
 ];
 
 @NgModule({
@@ -32,7 +32,8 @@ const routes: Routes = [
     LoginComponent,
     FormComponent,
     PaginatorComponent,
-    DetailComponent
+    DetailComponent,
+    FileComponent
   ],
   imports: [
     FormsModule,
