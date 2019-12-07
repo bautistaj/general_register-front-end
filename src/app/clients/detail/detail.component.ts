@@ -35,7 +35,7 @@ export class DetailComponent implements OnInit {
 
   async uploadPhoto() {
     if(!this.photo){
-      this.ntf.showSuccessWarning('Advertencia','Debe de seleccionar foto');
+      this.ntf.showWarningMessage('Advertencia','Debe de seleccionar foto');
     }else{
       const response =  await this.clientService.uploadPhoto(this.photo, this.client.id).toPromise();
       this.client = response['client'] as Client;

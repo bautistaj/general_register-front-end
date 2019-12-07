@@ -25,6 +25,34 @@ export class ClientService {
     this.httpHeaders;
   }
   
+  getFiles(id: any) {
+    return this.http.get<any>(`${this.API}/api/clients/${id}/files`, {headers: this.getAuthorizationHeader()});
+  }
+
+
+  deleteFile(id: any) {
+    return this.http.delete<any>(`${this.API}/api/clients/files/${id}`, {headers: this.getAuthorizationHeader()});
+  }
+
+  saveFiles(files: File[], id): Observable<Client> {
+    let formData = new FormData();
+    for (let index = 0; index < files.length; index++) {
+      const file = files[index];
+      formData.append(`file${index}`, file);
+    }
+    
+    formData.append("id", id);
+    
+    let httpHeaders = new HttpHeaders();
+    let token = this.authService.token;
+    if (token != null) {
+      httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+
+      
+    return this.http.post<Client>(`${this.API}/api/clients/files`, formData, { headers: httpHeaders });
+  }
+
   getClients(page: number): Observable<any> {
     return this.http.get<any>(`${this.API}/api/clients/page/${page}`, {headers: this.getAuthorizationHeader()});
   }
@@ -49,7 +77,7 @@ export class ClientService {
     let formData = new FormData();
     formData.append("photo", photo);
     formData.append("id", id);
-
+    
     let httpHeaders = new HttpHeaders();
     let token = this.authService.token;
     if (token != null) {

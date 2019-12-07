@@ -1,4 +1,8 @@
+import { Client } from '../client';
+
 export class ClientFile {
   id?: number;
-  path: string;
+	fileName: string;
+	storePath: string;
+	client: Client;
 }

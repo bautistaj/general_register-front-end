@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'clients/form', component: FormComponent},
   { path: 'clients/form/:id', component: FormComponent},
   { path: 'clients/page/:page', component: ClientsComponent},
+  { path: 'clients/files/:id', component: FileComponent},
 ];
 
 @NgModule({

@@ -1,3 +1,5 @@
+import { ClientFile } from './file/file';
+
 export class Client {
   id?: number;
 	name: string;
@@ -7,5 +9,6 @@ export class Client {
 	email: string;
 	birthday: Date; 
 	createdAt: Date;
-	photo: string;	
+	photo: string;
+	files: ClientFile[];
 }
